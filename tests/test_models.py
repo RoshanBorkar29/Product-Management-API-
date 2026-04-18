@@ -70,3 +70,37 @@ class TestProductModel(unittest.TestCase):
     deleted_product = Product.find(product.id)
 
     self.assertIsNone(deleted_product)
+
+def test_list_all_products(self):
+    """Test listing all Products"""
+    Product(name="A", description="A", price=10, available=True, category="Cat1").create()
+    Product(name="B", description="B", price=20, available=True, category="Cat2").create()
+
+    products = Product.all()
+
+    self.assertEqual(len(products), 2)
+def test_find_by_name(self):
+    """Test finding Product by name"""
+    product = Product(name="Phone", description="Smartphone", price=500, available=True, category="Electronics")
+    product.create()
+
+    results = Product.find_by_name("Phone")
+
+    self.assertTrue(len(results) > 0)
+    self.assertEqual(results[0].name, "Phone")
+def test_find_by_category(self):
+    """Test finding Product by category"""
+    product = Product(name="TV", description="LED", price=800, available=True, category="Electronics")
+    product.create()
+
+    results = Product.find_by_category("Electronics")
+
+    self.assertTrue(len(results) > 0)
+def test_find_by_availability(self):
+    """Test finding Product by availability"""
+    product = Product(name="Tablet", description="Android", price=300, available=True, category="Electronics")
+    product.create()
+
+    results = Product.find_by_availability(True)
+
+    self.assertTrue(len(results) > 0)
