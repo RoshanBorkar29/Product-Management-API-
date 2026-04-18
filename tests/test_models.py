@@ -52,3 +52,21 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(updated_product.name, "Updated Laptop")
         self.assertEqual(updated_product.price, 1200.0)
         self.assertEqual(updated_product.available, False)
+        
+    def test_delete_a_product(self):
+    """Test deleting a Product"""
+    product = Product(
+        name="Laptop",
+        description="Gaming Laptop",
+        price=1000.0,
+        available=True,
+        category="Electronics"
+    )
+    product.create()
+
+    # Delete the product
+    product.delete()
+
+    deleted_product = Product.find(product.id)
+
+    self.assertIsNone(deleted_product)
